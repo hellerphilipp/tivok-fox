@@ -14,7 +14,10 @@ export class App extends React.Component<{}, AppState> {
 
     render() {
         return (
-            <p>Hey!</p>
+            <div>
+                <p>Hey!</p>
+                <button onClick={this.state.auth.authorize}>Login</button>
+            </div>
         )
     }
 }

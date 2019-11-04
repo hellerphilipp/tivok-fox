@@ -7,8 +7,8 @@ export class Auth {
         this.client = new Auth0.WebAuth({
             domain: 'tivok.eu.auth0.com',
             clientID: 'Xp3pDuzT7fKjGsHkvY382H8z97YRlXBy',
-            redirectUri: 'http://localhost:5000',
-            responseType: 'token',
+            redirectUri: 'http://localhost:8080/callback',
+            responseType: 'id_token',
             scope: 'openid'
         })
 

@@ -8,7 +8,8 @@ export class Sidebar extends React.Component<{}, {}> {
     render() {
         return (
             <div className="w-64 px-8 py-4 bg-gray-100 border-r">
-                <nav className="mt-8">
+                <img className="mt-4 h-6" src="/img/tivok-logo.png" />
+                <nav className="mt-10">
                     <SidebarHeading>Set-up</SidebarHeading>
                     <div className="mt-2 -mx-3 mb-8">
                         <SidebarLink href="#" active={true}>Event details</SidebarLink>

@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { Auth } from './Auth';
 
-interface MainProps {
+interface HomeProps {
     auth: Auth,
 }
 
-export class Main extends React.Component<MainProps,{}> {
+export class Home extends React.Component<HomeProps,{}> {
     render() {
         return (
             <p>

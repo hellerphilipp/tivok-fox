@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Auth } from './Auth'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import { Login } from './Login'
-import { Main } from './Main'
+import { Home } from './Home'
 import { Callback } from './Callback'
 
 interface AppState {
@@ -20,7 +20,7 @@ export class App extends React.Component<{}, AppState> {
         return (
             <Router>
                 <Route path="/" exact component={() => 
-                        this.state.auth.isAuthenticated()?<Main auth={this.state.auth} />:<Login auth={this.state.auth} />}
+                        this.state.auth.isAuthenticated()?<Home auth={this.state.auth} />:<Login auth={this.state.auth} />}
                 />
                 <Route path="/callback" exact component={() => <Callback auth={this.state.auth} />} />
             </Router>

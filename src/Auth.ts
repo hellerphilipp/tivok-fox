@@ -1,4 +1,5 @@
 import * as Auth0 from 'auth0-js'
+import Cookies from 'universal-cookie'
 
 export class Auth {
     client: Auth0.WebAuth
@@ -17,5 +18,25 @@ export class Auth {
 
     authorize() {
         this.client.authorize()
+    }
+
+    handleAuthentication() {
+        this.client.parseHash((err, results) => {
+            if(results && results.idToken) {
+                let expiresAt = JSON.stringify(results.expiresIn * 1000 + new Date().getTime())
+
+                const cookies = new Cookies()
+                cookies.set('id_token', results.idToken, { path: '/' })
+                cookies.set('token_exp', expiresAt, { path: '/' })
+                location.hash = ""
+            } else {
+                console.log(err)
+            }
+            location.pathname = "/"
+        })
+    }
+
+    isAuthenticated(): boolean {
+        return false
     }
 }

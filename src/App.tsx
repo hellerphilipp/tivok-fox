@@ -1,5 +1,8 @@
 import * as React from 'react'
 import { Auth } from './Auth'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { Login } from './Login'
+import { Callback } from './Callback'
 
 interface AppState {
     auth: Auth
@@ -14,10 +17,10 @@ export class App extends React.Component<{}, AppState> {
 
     render() {
         return (
-            <div>
-                <p>Hey!</p>
-                <button onClick={this.state.auth.authorize}>Login</button>
-            </div>
+            <Router>
+                <Route path="/" exact component={() => <Login auth={this.state.auth} />} />
+                <Route path="/callback" exact component={() => <Callback auth={this.state.auth} />} />
+            </Router>
         )
     }
 }

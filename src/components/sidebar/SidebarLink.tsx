@@ -1,5 +1,5 @@
 import * as React from 'react'
-import "../tailwind.css"
+import "../../tailwind.css"
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 interface SidebarLinkProps {
@@ -9,10 +9,12 @@ interface SidebarLinkProps {
 
 export class SidebarLink extends React.Component<SidebarLinkProps, {}> {
     render() {
-        let classes = "flex justify-left items-center px-3 py-2 text-sm font-medium text-gray-900 rounded-lg"
+        let classes = "flex justify-left items-center px-3 py-2 text-sm font-medium rounded-lg"
 
         if(this.props.active) {
-            classes = classes + " bg-gray-200"
+            classes = classes + "text-gray-900 bg-gray-200"
+        } else if(!this.props.active) {
+            classes = classes + " text-gray-700"
         }
 
         return (

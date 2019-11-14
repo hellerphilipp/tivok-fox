@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Auth } from './Auth'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import { Login } from './Login'
 import { Home } from './Home'
 import { Callback } from './Callback'

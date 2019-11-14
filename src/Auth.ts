@@ -23,7 +23,7 @@ export class Auth {
     handleAuthentication() {
         this.client.parseHash((err, results) => {
             if(results && results.idToken) {
-                let expiresAt = JSON.stringify(results.expiresIn * 1000 + new Date().getTime())
+                let expiresAt = results.expiresIn * 1000 + new Date().getTime()
 
                 const cookies = new Cookies()
                 cookies.set('id_token', results.idToken, { path: '/' })
@@ -37,6 +37,11 @@ export class Auth {
     }
 
     isAuthenticated(): boolean {
-        return false
+        // validation is server side anyway..if someone messes with the token, broken functionality is their fault
+        const cookies = new Cookies()
+
+        let token = cookies.get('id_token')
+        let expiresAt = cookies.get('token_exp')
+        return token&&expiresAt?expiresAt < new Date().getTime():false
     }
 }

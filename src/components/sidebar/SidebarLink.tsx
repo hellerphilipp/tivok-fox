@@ -9,12 +9,12 @@ interface SidebarLinkProps {
 
 export class SidebarLink extends React.Component<SidebarLinkProps, {}> {
     render() {
-        let classes = "flex justify-left items-center px-3 py-2 text-sm font-medium rounded-lg"
+        let classes = "flex items-center px-3 py-2 text-sm font-medium rounded-lg"
 
         if(this.props.active) {
-            classes = classes + "text-gray-900 bg-gray-200"
+            classes = classes + " text-gray-900 bg-gray-200"
         } else if(!this.props.active) {
-            classes = classes + " text-gray-700"
+            classes = classes + " text-gray-700 hover:text-gray-900 hover:bg-gray-200"
         }
 
         return (

@@ -10,7 +10,7 @@ export class Sidebar extends React.Component<{}, {}> {
             <div className="w-64 px-8 py-4 bg-gray-100 border-r">
                 <nav className="mt-8">
                     <SidebarHeading>Set-up</SidebarHeading>
-                    <div className="mt-2 -mx-3 mb-6">
+                    <div className="mt-2 -mx-3 mb-8">
                         <SidebarLink href="#" active={true}>Event details</SidebarLink>
                         <SidebarLink href="#" active={false}>Tickets & pricing</SidebarLink>
                     </div>

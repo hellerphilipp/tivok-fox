@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Dropdown, DropdownItem } from './Dropdown'
 
 import "../tailwind.css"
+import { Eventchooser } from './Eventchooser'
 
 export class Headerbar extends React.Component<{}, {}> {
     render() {
@@ -10,18 +11,7 @@ export class Headerbar extends React.Component<{}, {}> {
                 <header className="px-6">
                     <div className="flex justify-between items-center border-b border-gray-200 py-2">
                         <div>
-                            <div className="relative px-2 py-1 -ml-2 rounded-lg text-gray-900 hover:bg-gray-100 cursor-pointer text-2xl">
-                                <h1>Silvester</h1>
-                                <span className="absolute inset-y-0 right-0 flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600">
-                                        <path 
-                                            stroke="#000"
-                                            fill="#000"
-                                            d="M270.3 58.65L153 175.95 35.7 58.65 0 94.35l153 153 153-153z"
-                                        />
-                                    </svg>
-                                </span>
-                            </div>
+                            <Eventchooser selected="Silvester 2k18"/>
                         </div>
                         <div>
                             <div className="relative">

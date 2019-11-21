@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { Dropdown, DropdownItem } from './Dropdown'
 
 import "../tailwind.css"
 import { Eventchooser } from './Eventchooser'
+import { AccountMenu } from './AccountMenu'
 
 export class Headerbar extends React.Component<{}, {}> {
     render() {
@@ -14,17 +14,7 @@ export class Headerbar extends React.Component<{}, {}> {
                             <Eventchooser selected="Silvester 2k18"/>
                         </div>
                         <div>
-                            <div className="relative">
-                                <button>
-                                    <img 
-                                        className="h-10 w-10 rounded-full object-cover mt-1"
-                                        src="https://lh3.googleusercontent.com/a-/AAuE7mCI1Exy9CMUU99TrafAKVVRLFJnQbf_UIQMc9dX" 
-                                    />
-                                </button>
-                                <Dropdown right={true}>
-                                    <DropdownItem text="Sign out" href="#"></DropdownItem>
-                                </Dropdown>
-                            </div>
+                            <AccountMenu />
                         </div>
                     </div>
                     <div className="py-3">

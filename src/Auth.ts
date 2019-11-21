@@ -20,6 +20,15 @@ export class Auth {
         this.client.authorize()
     }
 
+    logout() {
+        const cookies = new Cookies()
+
+        cookies.remove('id_token')
+        cookies.remove('token_exp')
+
+        location.pathname = "/"
+    }
+
     handleAuthentication() {
         this.client.parseHash((err, results) => {
             if(results && results.idToken) {

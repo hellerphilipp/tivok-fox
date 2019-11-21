@@ -38,7 +38,7 @@ export class AccountMenu extends React.Component<{}, AccountMenuState> {
 
                 {this.state.menuShown && (
                     <Dropdown right={true}>
-                        <DropdownItem text="Sign out" href="#"></DropdownItem>
+                        <DropdownItem text="Sign out" href="/logout"></DropdownItem>
                     </Dropdown>
                 )}
                 

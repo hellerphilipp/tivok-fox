@@ -1,25 +1,54 @@
 import * as React from 'react'
 
+import { Dropdown, DropdownItem } from './Dropdown'
+
 import "../tailwind.css"
+import { func } from 'prop-types';
 
 export interface EventchooserProps {
     selected: string
 }
 
-export class Eventchooser extends React.Component<EventchooserProps, {}> {
+export interface EventchooserState {
+    menuShown: boolean
+}
+
+export class Eventchooser extends React.Component<EventchooserProps, EventchooserState> {
+    constructor(props: EventchooserProps) {
+        super(props)
+
+        this.toggleMenu = this.toggleMenu.bind(this);
+    }
+    
+    componentWillMount() {
+        this.setState({
+            menuShown: false
+        });
+    }
+
+    toggleMenu() {
+        this.setState(prevState => ({
+            menuShown: !prevState.menuShown
+        }));
+    }
+
+    newEvent() {
+        let name = prompt("Name of the new event (can be changed later):")
+        console.log(name)
+        this.toggleMenu() // why doesn't this work
+    }
+
     render() {
         return (
-            <div className="relative px-2 py-1 -ml-2 rounded-lg text-gray-900 hover:bg-gray-100 cursor-pointer text-2xl">
-                <h1>{this.props.selected}</h1>
-                <span className="absolute inset-y-0 right-0 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600">
-                        <path 
-                            stroke="#000"
-                            fill="#000"
-                            d="M270.3 58.65L153 175.95 35.7 58.65 0 94.35l153 153 153-153z"
-                        />
-                    </svg>
-                </span>
+            <div className="relative">
+                <button onClick={this.toggleMenu} className="px-2 py-1 -ml-2 rounded-lg text-gray-900 hover:bg-gray-100 cursor-pointer text-2xl focus:outline-none">
+                    {this.props.selected}
+                </button>
+                {this.state.menuShown && (
+                    <Dropdown right={true}>
+                        <DropdownItem isBlue onClick={this.newEvent} text="New Event" href="#"></DropdownItem>
+                    </Dropdown>
+                )}
             </div>
         );
     }

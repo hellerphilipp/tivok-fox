@@ -29,7 +29,7 @@ export class AccountMenu extends React.Component<{}, AccountMenuState> {
     render() {
         return (
             <div className="relative">
-                <button onClick={this.toggleMenu}>
+                <button onClick={this.toggleMenu} className="focus:outline-none">
                     <img 
                         className="h-10 w-10 rounded-full object-cover mt-1"
                         src="https://lh3.googleusercontent.com/a-/AAuE7mCI1Exy9CMUU99TrafAKVVRLFJnQbf_UIQMc9dX" 

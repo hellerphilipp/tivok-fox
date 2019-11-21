@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Auth } from './Auth'
 import { Sidebar } from './components/Sidebar'
 import "./tailwind.css"
+import { Dropdown, DropdownItem } from './components/Dropdown'
 
 interface HomeProps {
     auth: Auth,
@@ -31,12 +32,17 @@ export class Home extends React.Component<HomeProps,{}> {
                                     </div>
                                 </div>
                                 <div>
-                                    <button>
-                                        <img 
-                                            className="h-10 w-10 rounded-full object-cover mt-1"
-                                            src="https://lh3.googleusercontent.com/a-/AAuE7mCI1Exy9CMUU99TrafAKVVRLFJnQbf_UIQMc9dX" 
-                                        />
-                                    </button>
+                                    <div className="relative">
+                                        <button>
+                                            <img 
+                                                className="h-10 w-10 rounded-full object-cover mt-1"
+                                                src="https://lh3.googleusercontent.com/a-/AAuE7mCI1Exy9CMUU99TrafAKVVRLFJnQbf_UIQMc9dX" 
+                                            />
+                                        </button>
+                                        <Dropdown>
+                                            <DropdownItem text="Sign out" href="#"></DropdownItem>
+                                        </Dropdown>
+                                    </div>
                                 </div>
                             </div>
                             <div className="py-3">

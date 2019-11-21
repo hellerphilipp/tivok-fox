@@ -9,7 +9,9 @@ export interface DropdownProps {
 
 export interface DropdownItemProps {
     text: string,
-    href: string
+    href: string,
+    onClick?: () => void,
+    isBlue?: boolean
 }
 
 export class Dropdown extends React.Component<DropdownProps, {}> {
@@ -32,8 +34,16 @@ export class Dropdown extends React.Component<DropdownProps, {}> {
 
 export class DropdownItem extends React.Component<DropdownItemProps, {}> {
     render() {
+        let classes = "block px-4 py-1 hover:bg-blue-500 hover:text-white"
+
+        if(this.props.isBlue) {
+            classes += " text-blue-500"
+        } else {
+            classes += " text-gray-800"
+        }
+
         return (
-            <Link className="block px-4 py-1 text-gray-800 hover:bg-blue-500 hover:text-white" to={this.props.href}>{this.props.text}</Link>
+            <Link onClick={this.props.onClick} className={classes} to={this.props.href}>{this.props.text}</Link>
         );
     }
 }

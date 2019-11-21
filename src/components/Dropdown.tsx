@@ -3,15 +3,27 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import "../tailwind.css"
 
+export interface DropdownProps {
+    right: boolean;
+}
+
 export interface DropdownItemProps {
     text: string,
     href: string
 }
 
-export class Dropdown extends React.Component<{}, {}> {
+export class Dropdown extends React.Component<DropdownProps, {}> {
     render() {
+        let classes = "absolute right-0 mt-1 w-32 rounded-lg py-1 bg-white shadow"
+
+        if(this.props.right) {
+            classes = classes + " right-0"
+        } else if(!this.props.right) {
+            classes = classes + " left-0"
+        }
+
         return (
-            <div className="absolute right-0 mt-1 w-32 rounded-lg py-1 bg-white shadow">
+            <div className={classes}>
                 {this.props.children}
             </div>
         );

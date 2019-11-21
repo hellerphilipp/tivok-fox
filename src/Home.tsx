@@ -39,7 +39,7 @@ export class Home extends React.Component<HomeProps,{}> {
                                                 src="https://lh3.googleusercontent.com/a-/AAuE7mCI1Exy9CMUU99TrafAKVVRLFJnQbf_UIQMc9dX" 
                                             />
                                         </button>
-                                        <Dropdown>
+                                        <Dropdown right={true}>
                                             <DropdownItem text="Sign out" href="#"></DropdownItem>
                                         </Dropdown>
                                     </div>

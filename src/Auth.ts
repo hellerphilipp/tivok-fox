@@ -45,6 +45,10 @@ export class Auth {
         })
     }
 
+    getIdToken(): string {
+        return new Cookies().get('id_token')
+    }
+
     isAuthenticated(): boolean {
         // validation is server side anyway..if someone messes with the token, broken functionality is their fault
         const cookies = new Cookies()

@@ -3,7 +3,8 @@ import * as React from 'react'
 import { Dropdown, DropdownItem } from './Dropdown'
 
 import "../tailwind.css"
-import { func } from 'prop-types';
+import { TivokAPIClient, Event } from '../TivokAPIClient';
+import { any, string } from 'prop-types';
 
 export interface EventchooserProps {
     selected: string
@@ -11,6 +12,7 @@ export interface EventchooserProps {
 
 export interface EventchooserState {
     menuShown: boolean
+    menuItems: Event[]
 }
 
 export class Eventchooser extends React.Component<EventchooserProps, EventchooserState> {
@@ -22,20 +24,48 @@ export class Eventchooser extends React.Component<EventchooserProps, Eventchoose
     
     componentWillMount() {
         this.setState({
-            menuShown: false
+            menuShown: false,
+            menuItems: []
         });
     }
 
     toggleMenu() {
+        if(!this.state.menuShown) {
+            this.loadDropdownItems()
+        }
+
         this.setState(prevState => ({
             menuShown: !prevState.menuShown
         }));
     }
 
+    loadDropdownItems() {
+        TivokAPIClient.getExistingEvents().then(
+            (res: [Event]) => {
+                this.setState({
+                    menuItems: this.state.menuItems.concat(res)
+                });
+                console.log(this.state.menuItems)
+            }
+        )
+    }
+
+    renderDropdownItems() {
+        // players.map((p, index) => (
+        //     <Fragment>
+        //       <b> {p} </b> {players.length - 1 !== index && "and"}
+        //     </Fragment>
+        //   ));
+        this.state.menuItems.map((item) => {
+            <React.Fragment>
+                <DropdownItem text={item.name} href="#"></DropdownItem>
+            </React.Fragment>
+        })
+    }
+
     newEvent() {
         let name = prompt("Name of the new event (can be changed later):")
-        console.log(name)
-        this.toggleMenu() // why doesn't this work
+        this.toggleMenu() // FIXME: why doesn't this work
     }
 
     render() {
@@ -46,6 +76,7 @@ export class Eventchooser extends React.Component<EventchooserProps, Eventchoose
                 </button>
                 {this.state.menuShown && (
                     <Dropdown right={true}>
+                        {this.loadDropdownItems()}
                         <DropdownItem isBlue onClick={this.newEvent} text="New Event" href="#"></DropdownItem>
                     </Dropdown>
                 )}

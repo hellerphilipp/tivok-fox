@@ -32,7 +32,7 @@ export class Auth {
     handleAuthentication() {
         this.client.parseHash((err, results) => {
             if(results && results.idToken) {
-                let expiresAt = JSON.parse(atob(results.idToken.split(".")[1])).exp * 1000 + new Date().getTime()
+                let expiresAt = JSON.parse(atob(results.idToken.split(".")[1])).exp * 1000
 
                 const cookies = new Cookies()
                 cookies.set('id_token', results.idToken, { path: '/' })

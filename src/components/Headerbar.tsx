@@ -4,7 +4,30 @@ import "../tailwind.css"
 import { Eventchooser } from './Eventchooser'
 import { AccountMenu } from './AccountMenu'
 
-export class Headerbar extends React.Component<{}, {}> {
+interface HeaderbarProps {
+    page: string;
+}
+
+export class Headerbar extends React.Component<HeaderbarProps, {}> {
+    getHeading() {
+        switch(this.props.page) {
+            case "eventDetails":
+                return "Event details"
+                break;
+            case "tickets":
+                return "Tickets and Pricing"
+                break;
+            case "orders":
+                return "Orders"
+                break;
+            case "guests":
+                return "Guest List"
+                break;
+            default:
+                return this.props.page
+        }
+    }
+
     render() {
         return (
             <div className="border-b-2 border-gray-200">
@@ -19,7 +42,7 @@ export class Headerbar extends React.Component<{}, {}> {
                     </div>
                     <div className="py-3">
                         <span className="flex items-center text-lg text-gray-900">
-                            <h2>Event details</h2>
+                            <h2>{this.getHeading()}</h2>
                         </span>
                     </div>
                 </header>

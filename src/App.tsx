@@ -21,7 +21,7 @@ export class App extends React.Component<{}, AppState> {
         return (
             <Router>
                 <Route path="/" exact component={() => 
-                        this.state.auth.isAuthenticated()?<Home auth={this.state.auth} />:<Login auth={this.state.auth} />}
+                        this.state.auth.isAuthenticated()?<Home page="eventDetails" auth={this.state.auth} />:<Login auth={this.state.auth} />}
                 />
                 <Route path="/callback" exact component={() => <Callback auth={this.state.auth} />} />
                 <Route path="/logout" exact component={() => <Logout auth={this.state.auth} />} />

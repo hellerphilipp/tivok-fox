@@ -6,15 +6,16 @@ import { Headerbar } from './components/Headerbar'
 
 interface HomeProps {
     auth: Auth,
+    page: string
 }
 
 export class Home extends React.Component<HomeProps,{}> {
     render() {
         return (
             <div className="h-screen flex">
-                <Sidebar />
+                <Sidebar page={this.props.page}/>
                 <div className="flex-1 min-w-0 bg-white">
-                    <Headerbar />
+                    <Headerbar page={this.props.page}/>
                     <div className="overflow-auto"></div>
                 </div>
             </div>

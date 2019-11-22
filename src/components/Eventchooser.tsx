@@ -4,29 +4,40 @@ import { Dropdown, DropdownItem } from './Dropdown'
 
 import "../tailwind.css"
 import { TivokAPIClient, Event } from '../TivokAPIClient';
-import { any, string } from 'prop-types';
-
-export interface EventchooserProps {
-    selected: string
-}
 
 export interface EventchooserState {
     menuShown: boolean
     menuItems: Event[]
+    selected?: Event
 }
 
-export class Eventchooser extends React.Component<EventchooserProps, EventchooserState> {
-    constructor(props: EventchooserProps) {
+export class Eventchooser extends React.Component<{}, EventchooserState> {
+    constructor(props: {}) {
         super(props)
 
         this.toggleMenu = this.toggleMenu.bind(this);
+        this.loadDropdownItems = this.loadDropdownItems.bind(this);
+        this.newEvent = this.newEvent.bind(this);
+        this.chooseEvent = this.chooseEvent.bind(this);
     }
     
     componentWillMount() {
         this.setState({
             menuShown: false,
-            menuItems: []
-        });
+            menuItems: [],
+            selected: null
+        })
+
+        // fetch and choose last selected event
+        TivokAPIClient.getOwnUser().then(user => {
+            if(user.lastEvent != null) {
+                TivokAPIClient.getEvent(user.lastEvent).then(event => {
+                    this.setState({
+                        selected: event
+                    })
+                })
+            }
+        })
     }
 
     toggleMenu() {
@@ -45,26 +56,42 @@ export class Eventchooser extends React.Component<EventchooserProps, Eventchoose
                 this.setState({
                     menuItems: res
                 });
-                console.log(this.state.menuItems)
             }
         )
     }
 
+    chooseEvent(event: Event) {
+        TivokAPIClient.updateUser({
+            lastEvent: event.id
+        }).then(_ => {
+            this.setState({
+                selected: event
+            })
+            console.log("chose", event.name)
+        })
+    }
+
     newEvent() {
         let name = prompt("Name of the new event (can be changed later):")
-        this.toggleMenu() // FIXME: why doesn't this work
+
+        TivokAPIClient.createEvent(name).then(eventId =>{
+            TivokAPIClient.getEvent(eventId).then(event => {
+                this.chooseEvent(event)
+                // this.toggleMenu() // FIXME: why doesn't this work
+            })
+        })
     }
 
     render() {
         return (
             <div className="relative">
                 <button onClick={this.toggleMenu} className="px-2 py-1 -ml-2 rounded-lg text-gray-900 hover:bg-gray-100 cursor-pointer text-2xl focus:outline-none">
-                    {this.props.selected}
+                    {this.state.selected!=null?this.state.selected.name:"No Event"}
                 </button>
                 {this.state.menuShown && (
                     <Dropdown right={true}>
                         {this.state.menuItems.map((item) => 
-                            <DropdownItem text={item.name} href="#"></DropdownItem>
+                            <DropdownItem onClick={() => {this.chooseEvent(item)}} text={item.name} href="#"></DropdownItem>
                         )}
                         <DropdownItem isBlue onClick={this.newEvent} text="New Event" href="#"></DropdownItem>
                     </Dropdown>

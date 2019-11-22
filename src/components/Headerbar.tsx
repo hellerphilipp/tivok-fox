@@ -34,7 +34,7 @@ export class Headerbar extends React.Component<HeaderbarProps, {}> {
                 <header className="px-6">
                     <div className="flex justify-between items-center border-b border-gray-200 py-2">
                         <div>
-                            <Eventchooser selected="Silvester 2k18"/>
+                            <Eventchooser />
                         </div>
                         <div>
                             <AccountMenu />

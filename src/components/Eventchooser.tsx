@@ -50,14 +50,6 @@ export class Eventchooser extends React.Component<EventchooserProps, Eventchoose
         )
     }
 
-    renderDropdownItems() {
-        this.state.menuItems.map((item) => {
-            <React.Fragment>
-                <DropdownItem text={item.name} href="#"></DropdownItem>
-            </React.Fragment>
-        })
-    }
-
     newEvent() {
         let name = prompt("Name of the new event (can be changed later):")
         this.toggleMenu() // FIXME: why doesn't this work
@@ -71,7 +63,9 @@ export class Eventchooser extends React.Component<EventchooserProps, Eventchoose
                 </button>
                 {this.state.menuShown && (
                     <Dropdown right={true}>
-                        {this.renderDropdownItems()}
+                        {this.state.menuItems.map((item) => 
+                            <DropdownItem text={item.name} href="#"></DropdownItem>
+                        )}
                         <DropdownItem isBlue onClick={this.newEvent} text="New Event" href="#"></DropdownItem>
                     </Dropdown>
                 )}

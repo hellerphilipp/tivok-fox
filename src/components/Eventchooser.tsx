@@ -43,7 +43,7 @@ export class Eventchooser extends React.Component<EventchooserProps, Eventchoose
         TivokAPIClient.getExistingEvents().then(
             (res: [Event]) => {
                 this.setState({
-                    menuItems: this.state.menuItems.concat(res)
+                    menuItems: res
                 });
                 console.log(this.state.menuItems)
             }
@@ -51,11 +51,6 @@ export class Eventchooser extends React.Component<EventchooserProps, Eventchoose
     }
 
     renderDropdownItems() {
-        // players.map((p, index) => (
-        //     <Fragment>
-        //       <b> {p} </b> {players.length - 1 !== index && "and"}
-        //     </Fragment>
-        //   ));
         this.state.menuItems.map((item) => {
             <React.Fragment>
                 <DropdownItem text={item.name} href="#"></DropdownItem>
@@ -76,7 +71,7 @@ export class Eventchooser extends React.Component<EventchooserProps, Eventchoose
                 </button>
                 {this.state.menuShown && (
                     <Dropdown right={true}>
-                        {this.loadDropdownItems()}
+                        {this.renderDropdownItems()}
                         <DropdownItem isBlue onClick={this.newEvent} text="New Event" href="#"></DropdownItem>
                     </Dropdown>
                 )}

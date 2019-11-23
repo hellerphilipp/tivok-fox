@@ -3,9 +3,13 @@ import * as React from 'react'
 import "../tailwind.css"
 import { Eventchooser } from './Eventchooser'
 import { AccountMenu } from './AccountMenu'
+import { AppState } from '../Home'
+import { TivokEvent } from '../TivokAPIClient'
 
 interface HeaderbarProps {
     page: string;
+    selectedEvent?: TivokEvent
+    setAppState: ((arg0: AppState) => void)
 }
 
 export class Headerbar extends React.Component<HeaderbarProps, {}> {
@@ -34,7 +38,7 @@ export class Headerbar extends React.Component<HeaderbarProps, {}> {
                 <header className="px-6">
                     <div className="flex justify-between items-center border-b border-gray-200 py-2">
                         <div>
-                            <Eventchooser />
+                            <Eventchooser setAppState={this.props.setAppState} selected={this.props.selectedEvent}/>
                         </div>
                         <div>
                             <AccountMenu />

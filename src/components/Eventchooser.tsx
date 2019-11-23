@@ -4,15 +4,20 @@ import { Dropdown, DropdownItem } from './Dropdown'
 
 import "../tailwind.css"
 import { TivokAPIClient, TivokEvent } from '../TivokAPIClient';
+import { AppState } from '../Home';
+
+export interface EventChooserProps {
+    setAppState: ((arg0: AppState) => void)
+    selected?: TivokEvent
+}
 
 export interface EventchooserState {
     menuShown: boolean
     menuItems: TivokEvent[]
-    selected?: TivokEvent
 }
 
-export class Eventchooser extends React.Component<{}, EventchooserState> {
-    constructor(props: {}) {
+export class Eventchooser extends React.Component<EventChooserProps, EventchooserState> {
+    constructor(props: EventChooserProps) {
         super(props)
 
         this.toggleMenu = this.toggleMenu.bind(this);
@@ -25,18 +30,6 @@ export class Eventchooser extends React.Component<{}, EventchooserState> {
         this.setState({
             menuShown: false,
             menuItems: [],
-            selected: null
-        })
-
-        // fetch and choose last selected event
-        TivokAPIClient.getOwnUser().then(user => {
-            if(user.lastEvent != null) {
-                TivokAPIClient.getEvent(user.lastEvent).then(event => {
-                    this.setState({
-                        selected: event
-                    })
-                })
-            }
         })
     }
 
@@ -64,8 +57,8 @@ export class Eventchooser extends React.Component<{}, EventchooserState> {
         TivokAPIClient.updateUser({
             lastEvent: event.id
         }).then(_ => {
-            this.setState({
-                selected: event
+            this.props.setAppState({
+                activeEvent: event
             })
             console.log("chose", event.name)
         })
@@ -86,7 +79,7 @@ export class Eventchooser extends React.Component<{}, EventchooserState> {
         return (
             <div className="relative">
                 <button onClick={this.toggleMenu} className="px-2 py-1 -ml-2 rounded-lg text-gray-900 hover:bg-gray-100 cursor-pointer text-2xl focus:outline-none">
-                    {this.state.selected!=null?this.state.selected.name:"No Event"}
+                    {this.props.selected!=null?this.props.selected.name:"No Event"}
                 </button>
                 {this.state.menuShown && (
                     <Dropdown right={true}>

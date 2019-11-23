@@ -82,7 +82,7 @@ export class Eventchooser extends React.Component<EventChooserProps, Eventchoose
                     {this.props.selected!=null?this.props.selected.name:"No Event"}
                 </button>
                 {this.state.menuShown && (
-                    <Dropdown right={true}>
+                    <Dropdown>
                         {this.state.menuItems.map((item) => 
                             <DropdownItem onClick={() => {this.chooseEvent(item)}} text={item.name} href="#"></DropdownItem>
                         )}

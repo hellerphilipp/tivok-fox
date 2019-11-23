@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import "../tailwind.css"
 
 export interface DropdownProps {
-    right: boolean;
+    right?: boolean;
 }
 
 export interface DropdownItemProps {

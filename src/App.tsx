@@ -23,6 +23,15 @@ export class App extends React.Component<{}, AppState> {
                 <Route path="/" exact component={() => 
                         this.state.auth.isAuthenticated()?<Home page="eventDetails" auth={this.state.auth} />:<Login auth={this.state.auth} />}
                 />
+                <Route path="/tickets" exact component={() => 
+                        this.state.auth.isAuthenticated()?<Home page="tickets" auth={this.state.auth} />:<Login auth={this.state.auth} />}
+                />
+                <Route path="/orders" exact component={() => 
+                        this.state.auth.isAuthenticated()?<Home page="orders" auth={this.state.auth} />:<Login auth={this.state.auth} />}
+                />
+                <Route path="/guests" exact component={() => 
+                        this.state.auth.isAuthenticated()?<Home page="guests" auth={this.state.auth} />:<Login auth={this.state.auth} />}
+                />
                 <Route path="/callback" exact component={() => <Callback auth={this.state.auth} />} />
                 <Route path="/logout" exact component={() => <Logout auth={this.state.auth} />} />
             </Router>

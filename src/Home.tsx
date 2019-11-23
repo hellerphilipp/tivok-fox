@@ -4,6 +4,7 @@ import { Sidebar } from './components/Sidebar'
 import "./tailwind.css"
 import { Headerbar } from './components/Headerbar'
 import { TivokAPIClient, TivokEvent } from './TivokAPIClient'
+import { PageEventDetails } from './PageEventDetails'
 
 interface HomeProps {
     auth: Auth,
@@ -38,13 +39,38 @@ export class Home extends React.Component<HomeProps,AppState> {
         })
     }
 
+    getMainComponent() {
+        switch(this.props.page) {
+            case "eventDetails":
+                return <PageEventDetails event={this.state.activeEvent}/>
+                break;
+            case "tickets":
+                return "Tickets and Pricing"
+                break;
+            case "orders":
+                return "Orders"
+                break;
+            case "guests":
+                return "Guest List"
+                break;
+            default:
+                return <React.Fragment />
+        }
+    }
+
     render() {
         return (
             <div className="h-screen flex">
                 <Sidebar page={this.props.page}/>
                 <div className="flex-1 min-w-0 bg-white">
                     <Headerbar setAppState={this.setState} selectedEvent={this.state.activeEvent} page={this.props.page}/>
-                    <div className="overflow-auto"></div>
+                    <div className="h-full">
+                        <main className="p-3 bg-gray-200 h-full">
+                            <div className="bg-white rounded-lg p-3">
+                                {this.getMainComponent()}
+                            </div>
+                        </main>
+                    </div>
                 </div>
             </div>
         )

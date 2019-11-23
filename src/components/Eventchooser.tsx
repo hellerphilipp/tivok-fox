@@ -60,7 +60,6 @@ export class Eventchooser extends React.Component<EventChooserProps, Eventchoose
             this.props.setAppState({
                 activeEvent: event
             })
-            console.log("chose", event.name)
         })
     }
 

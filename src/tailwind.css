@@ -3,3 +3,25 @@
 @tailwind components;
 
 @tailwind utilities;
+
+form > div {
+    @apply flex flex-wrap -mx-3 mb-6;
+}
+
+form > div > div {
+    @apply px-3;
+}
+
+label {
+    @apply block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2;
+}
+
+input,
+textarea {
+    @apply appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight mb-3;
+}
+
+input:focus,
+textarea:focus {
+    @apply outline-none bg-white border-gray-500;
+}

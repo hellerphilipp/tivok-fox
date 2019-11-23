@@ -10,14 +10,14 @@
 import * as React from 'react'
 import { Auth } from './Auth'
 
-export interface Event {
+export interface TivokEvent {
   id: string,
   name: string,
   ownerID: string,
   published: boolean
 }
 
-export interface User {
+export interface TivokUser {
   id?: string,
   sub?: string,
   email?: string,
@@ -35,7 +35,7 @@ export class TivokAPIClient {
     // static async getUser(): Promise<[Event]> {
     // }
 
-    static async getExistingEvents(): Promise<[Event]> {
+    static async getExistingEvents(): Promise<[TivokEvent]> {
         if(this.auth.isAuthenticated()) {
             return fetch(this.host+'/events', { // TODO: Filter by User?!
                 method: 'get', 
@@ -43,24 +43,24 @@ export class TivokAPIClient {
                   'Authorization': 'Bearer '+this.auth.getIdToken(), 
                   'Content-Type': 'application/json; charset=utf-8'
                 }),
-            }).then(res => res.json() as Promise<[Event]>)
+            }).then(res => res.json() as Promise<[TivokEvent]>)
         }
         return null
     }
 
-    static async getOwnUser(): Promise<User> {
+    static async getOwnUser(): Promise<TivokUser> {
       if(this.auth.isAuthenticated()) {
         return fetch(this.host+'/users?self', {
             method: 'get', 
             headers: new Headers({
               'Authorization': 'Bearer '+this.auth.getIdToken(), 
             }),
-        }).then(res => res.json() as Promise<User>)
+        }).then(res => res.json() as Promise<TivokUser>)
       }
       return null
     }
 
-    static async updateUser(newUser: User): Promise<void> {
+    static async updateUser(newUser: TivokUser): Promise<void> {
       if(this.auth.isAuthenticated()) {
         return this.getOwnUser().then(user => {
           return fetch(this.host+'/users/'+user.id, {
@@ -76,7 +76,7 @@ export class TivokAPIClient {
       return null
     }
 
-    static async getEvent(id: string): Promise<Event> {
+    static async getEvent(id: string): Promise<TivokEvent> {
       if(this.auth.isAuthenticated()) {
           return fetch(this.host+'/events/'+id, {
               method: 'get', 
@@ -84,7 +84,7 @@ export class TivokAPIClient {
                 'Authorization': 'Bearer '+this.auth.getIdToken(), 
                 'Content-Type': 'application/json; charset=utf-8'
               }),
-          }).then(res => res.json() as Promise<Event>)
+          }).then(res => res.json() as Promise<TivokEvent>)
       }
       return null
   }

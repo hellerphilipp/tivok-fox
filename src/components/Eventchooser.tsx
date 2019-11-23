@@ -3,12 +3,12 @@ import * as React from 'react'
 import { Dropdown, DropdownItem } from './Dropdown'
 
 import "../tailwind.css"
-import { TivokAPIClient, Event } from '../TivokAPIClient';
+import { TivokAPIClient, TivokEvent } from '../TivokAPIClient';
 
 export interface EventchooserState {
     menuShown: boolean
-    menuItems: Event[]
-    selected?: Event
+    menuItems: TivokEvent[]
+    selected?: TivokEvent
 }
 
 export class Eventchooser extends React.Component<{}, EventchooserState> {
@@ -52,7 +52,7 @@ export class Eventchooser extends React.Component<{}, EventchooserState> {
 
     loadDropdownItems() {
         TivokAPIClient.getExistingEvents().then(
-            (res: [Event]) => {
+            (res: [TivokEvent]) => {
                 this.setState({
                     menuItems: res
                 });
@@ -60,7 +60,7 @@ export class Eventchooser extends React.Component<{}, EventchooserState> {
         )
     }
 
-    chooseEvent(event: Event) {
+    chooseEvent(event: TivokEvent) {
         TivokAPIClient.updateUser({
             lastEvent: event.id
         }).then(_ => {

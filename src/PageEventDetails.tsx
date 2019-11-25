@@ -28,9 +28,15 @@ export class PageEventDetails extends React.Component<PageEventDetailsProps,{}> 
                         TivokAPIClient.updateEvent(this.props.event, values).then(() => {
                             TivokAPIClient.getEvent(this.props.event.id).then(event => {
                                 this.props.setAppState({
-                                    'activeEvent': event
+                                    'activeEvent': event,
+                                    'alertText': "Your changes have been saved!"
                                 })
                                 setSubmitting(false);
+                                setTimeout(() => {
+                                    this.props.setAppState({
+                                        'alertText': null
+                                    })
+                                }, 4000);
                             })
                         })
                     }}

@@ -16,7 +16,7 @@ export interface DropdownItemProps {
 
 export class Dropdown extends React.Component<DropdownProps, {}> {
     render() {
-        let classes = "absolute right-0 mt-1 w-32 rounded-lg py-1 bg-white shadow"
+        let classes = "absolute right-0 mt-1 w-32 rounded-lg py-1 bg-white shadow z-50"
 
         if(this.props.right) {
             classes = classes + " right-0"

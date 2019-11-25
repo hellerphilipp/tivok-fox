@@ -13,6 +13,7 @@ interface HomeProps {
 
 export interface AppState {
     activeEvent?: TivokEvent
+    alertText?: string
 }
 
 export class Home extends React.Component<HomeProps,AppState> {
@@ -66,7 +67,12 @@ export class Home extends React.Component<HomeProps,AppState> {
                 <Sidebar page={this.props.page}/>
                 <div className="flex-1 min-w-0 bg-white">
                     <Headerbar setAppState={this.setState} selectedEvent={this.state.activeEvent} page={this.props.page}/>
-                    <div className="h-full">
+                    <div className="h-full relative">
+                        {this.state.alertText != null && (
+                            <div className="absolute flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3 w-full">
+                                <p>{this.state.alertText}</p>
+                            </div>
+                        )}
                         <main className="p-3 bg-gray-200 h-full">
                             <div className="bg-white rounded-lg p-3">
                                 {this.getMainComponent()}

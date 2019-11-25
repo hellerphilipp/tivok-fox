@@ -43,7 +43,7 @@ export class Home extends React.Component<HomeProps,AppState> {
         if(this.state.activeEvent != null) {
             switch(this.props.page) {
                 case "eventDetails":
-                    return <PageEventDetails event={this.state.activeEvent}/>
+                    return <PageEventDetails setAppState={this.setState} event={this.state.activeEvent}/>
                     break;
                 case "tickets":
                     return "Tickets and Pricing"

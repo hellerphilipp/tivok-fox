@@ -1,10 +1,12 @@
 import * as React from 'react'
 import "./tailwind.css"
 import "./TivokAPIClient"
-import { TivokEvent } from './TivokAPIClient'
+import { TivokEvent, TivokAPIClient } from './TivokAPIClient'
 import { Formik } from 'formik'
+import { AppState } from './Home'
 
 export interface PageEventDetailsProps {
+    setAppState: ((arg0: AppState) => void)
     event: TivokEvent
 }
 
@@ -15,17 +17,22 @@ export class PageEventDetails extends React.Component<PageEventDetailsProps,{}> 
                 <Formik
                     initialValues={{ 
                         name: this.props.event.name, 
-                        startDate: this.props.event.startDate!=null?this.props.event.startDate.toISOString():'',
-                        endDate: this.props.event.endDate!=null?this.props.event.endDate.toISOString():'',
+                        startDate: this.props.event.startDate!=null?this.props.event.startDate.toISOString().substring(0,16):'',
+                        endDate: this.props.event.endDate!=null?this.props.event.endDate.toISOString().substring(0,16):'',
                         location: this.props.event.location,
                         description: this.props.event.description,
                         published: this.props.event.published?'true':'false',
                     }}
                     onSubmit={(values, { setSubmitting }) => {
-                        setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
-                        setSubmitting(false);
-                        }, 400);
+                        setSubmitting(true);
+                        TivokAPIClient.updateEvent(this.props.event, values).then(() => {
+                            TivokAPIClient.getEvent(this.props.event.id).then(event => {
+                                this.props.setAppState({
+                                    'activeEvent': event
+                                })
+                                setSubmitting(false);
+                            })
+                        })
                     }}
                     >
                     {({

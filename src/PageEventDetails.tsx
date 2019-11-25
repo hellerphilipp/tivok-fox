@@ -19,6 +19,7 @@ export class PageEventDetails extends React.Component<PageEventDetailsProps,{}> 
                         endDate: this.props.event.endDate!=null?this.props.event.endDate.toISOString():'',
                         location: this.props.event.location,
                         description: this.props.event.description,
+                        published: this.props.event.published?'true':'false',
                     }}
                     onSubmit={(values, { setSubmitting }) => {
                         setTimeout(() => {
@@ -89,18 +90,26 @@ export class PageEventDetails extends React.Component<PageEventDetailsProps,{}> 
                                     <label>
                                         Event description
                                     </label>
-                                        <textarea
-                                            name="description"
-                                            onChange={handleChange}
-                                            value={values.description}
-                                        />
+                                    <textarea
+                                        name="description"
+                                        onChange={handleChange}
+                                        value={values.description}
+                                    />
                                 </div>
                             </div>
-                            <input
-                                type="checkbox"
-                                name="published"
-                                onChange={handleChange}
-                            />
+                            <div>
+                                <div>
+                                    <label>
+                                        Publish
+                                    </label>
+                                    <input
+                                        type="checkbox"
+                                        name="published"
+                                        onChange={handleChange}
+                                        value={values.published}
+                                    />
+                                </div>
+                            </div>
                             <button type="submit" disabled={isSubmitting}>
                                 Submit
                             </button>

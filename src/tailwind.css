@@ -16,12 +16,12 @@ label {
     @apply block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2;
 }
 
-input,
+input:not([type=checkbox]),
 textarea {
     @apply appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight mb-3;
 }
 
-input:focus,
+input:not([type=checkbox]):focus,
 textarea:focus {
     @apply outline-none bg-white border-gray-500;
 }

@@ -14,12 +14,11 @@ export class PageEventDetails extends React.Component<PageEventDetailsProps,{}> 
             <React.Fragment>
                 <Formik
                     initialValues={{ 
-                        name: '', 
-                        startDate: '',
-                        endDate: '',
-                        location: '',
-                        description: '',
-                        published: '',
+                        name: this.props.event.name, 
+                        startDate: this.props.event.startDate!=null?this.props.event.startDate.toISOString():'',
+                        endDate: this.props.event.endDate!=null?this.props.event.endDate.toISOString():'',
+                        location: this.props.event.location,
+                        description: this.props.event.description,
                     }}
                     onSubmit={(values, { setSubmitting }) => {
                         setTimeout(() => {
@@ -101,7 +100,6 @@ export class PageEventDetails extends React.Component<PageEventDetailsProps,{}> 
                                 type="checkbox"
                                 name="published"
                                 onChange={handleChange}
-                                value={values.published}
                             />
                             <button type="submit" disabled={isSubmitting}>
                                 Submit

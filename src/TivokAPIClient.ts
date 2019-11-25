@@ -14,6 +14,10 @@ export interface TivokEvent {
   id: string,
   name: string,
   ownerID: string,
+  description: string,
+  startDate: Date,
+  endDate: Date,
+  location: string,
   published: boolean
 }
 

@@ -40,21 +40,23 @@ export class Home extends React.Component<HomeProps,AppState> {
     }
 
     getMainComponent() {
-        switch(this.props.page) {
-            case "eventDetails":
-                return <PageEventDetails event={this.state.activeEvent}/>
-                break;
-            case "tickets":
-                return "Tickets and Pricing"
-                break;
-            case "orders":
-                return "Orders"
-                break;
-            case "guests":
-                return "Guest List"
-                break;
-            default:
-                return <React.Fragment />
+        if(this.state.activeEvent != null) {
+            switch(this.props.page) {
+                case "eventDetails":
+                    return <PageEventDetails event={this.state.activeEvent}/>
+                    break;
+                case "tickets":
+                    return "Tickets and Pricing"
+                    break;
+                case "orders":
+                    return "Orders"
+                    break;
+                case "guests":
+                    return "Guest List"
+                    break;
+                default:
+                    return <React.Fragment />
+            }
         }
     }
 

@@ -34,6 +34,10 @@ button[type=submit]:disabled {
     @apply bg-blue-200;
 }
 
-button[type=submit]:hover {
+button[type=submit]:hover:enabled {
     @apply bg-blue-600;
+}
+
+button[type=submit]:hover:disabled {
+    cursor: wait;
 }

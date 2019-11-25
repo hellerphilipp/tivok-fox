@@ -27,7 +27,7 @@ export class PageEventDetails extends React.Component<PageEventDetailsProps,{}> 
                         setSubmitting(true);
                         TivokAPIClient.updateEvent(this.props.event, values).then(() => {
                             TivokAPIClient.getEvent(this.props.event.id).then(event => {
-                                // TODO: make this check response code via API and give error message on fail!
+                                // TODO: make this check response code via API and give error message on fail! [for event create popup too]
                                 this.props.setAppState({
                                     'activeEvent': event,
                                     'alertText': "Your changes have been saved!"

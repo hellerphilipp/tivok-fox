@@ -25,3 +25,15 @@ input:not([type=checkbox]):focus,
 textarea:focus {
     @apply outline-none bg-white border-gray-500;
 }
+
+button[type=submit] {
+    @apply w-full bg-blue-500 text-white py-3 px-4 rounded;
+}
+
+button[type=submit]:disabled {
+    @apply bg-blue-200;
+}
+
+button[type=submit]:hover {
+    @apply bg-blue-600;
+}

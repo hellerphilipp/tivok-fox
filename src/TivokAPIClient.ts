@@ -49,6 +49,7 @@ export class TivokAPIClient {
                 }),
             }).then(res => res.json() as Promise<[TivokEvent]>)
         }
+        this.auth.logout()
         return null
     }
 
@@ -61,6 +62,7 @@ export class TivokAPIClient {
             }),
         }).then(res => res.json() as Promise<TivokUser>)
       }
+      this.auth.logout()
       return null
     }
 
@@ -77,6 +79,7 @@ export class TivokAPIClient {
           }).then()
         })
       }
+      this.auth.logout()
       return null
     }
 
@@ -90,6 +93,7 @@ export class TivokAPIClient {
               }),
           }).then(res => res.json() as Promise<TivokEvent>)
       }
+      this.auth.logout()
       return null
   }
 
@@ -106,6 +110,7 @@ export class TivokAPIClient {
             })
         }).then(res => res.headers.get('Location').split('/')[2])
     }
+    this.auth.logout()
     return null
     }
 }

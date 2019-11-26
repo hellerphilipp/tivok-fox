@@ -1,5 +1,5 @@
 module.exports = {
-    mode: "development",
+    mode: "production",
     devtool: "source-map",
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx"]

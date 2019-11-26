@@ -23,7 +23,7 @@ export interface TivokUser {
 }
 
 export class TivokAPIClient {
-    private static host = "http://localhost:8080"
+    private static host = "https://api.tivok.projects.pxheller.co"
     private static auth = new Auth()
 
     // static async getUser(): Promise<[Event]> {

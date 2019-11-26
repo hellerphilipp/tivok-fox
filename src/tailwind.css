@@ -1,0 +1,43 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+form > div {
+    @apply flex flex-wrap -mx-3 mb-6;
+}
+
+form > div > div {
+    @apply px-3;
+}
+
+label {
+    @apply block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2;
+}
+
+input:not([type=checkbox]),
+textarea {
+    @apply appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight mb-3;
+}
+
+input:not([type=checkbox]):focus,
+textarea:focus {
+    @apply outline-none bg-white border-gray-500;
+}
+
+button[type=submit] {
+    @apply w-full bg-blue-500 text-white py-3 px-4 rounded;
+}
+
+button[type=submit]:disabled {
+    @apply bg-blue-200;
+}
+
+button[type=submit]:hover:enabled {
+    @apply bg-blue-600;
+}
+
+button[type=submit]:hover:disabled {
+    cursor: wait;
+}

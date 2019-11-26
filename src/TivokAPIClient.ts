@@ -132,8 +132,8 @@ export class TivokAPIClient {
           body: JSON.stringify({
             name: newEvent.name,
             description: newEvent.description,
-            startDate: newEvent.startDate+':00Z',
-            endDate: newEvent.endDate+':00Z',
+            startDate: newEvent.startDate==''?null:(newEvent.startDate+':00Z'),
+            endDate: newEvent.endDate==''?null:(newEvent.endDate+':00Z'),
             location: newEvent.location,
             published: newEvent.published=="true"?true:false
           })

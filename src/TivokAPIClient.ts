@@ -108,6 +108,7 @@ export class TivokAPIClient {
           body: JSON.stringify({
             name: name
           })
+      // FIXME: update to Content-Location header (change backend first)
       }).then(res => res.headers.get('Location').split('/')[2])
     }
     this.auth.logout()
